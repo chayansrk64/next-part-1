@@ -1,17 +1,24 @@
+'use client'
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import React from 'react';
+import NavLink from './NavLink';
 
 const Header = () => {
+    
+    const pathname = usePathname();
+    if(pathname.startsWith('/dashboard')) return <></>
+
     return (
         <div className='px-4 flex justify-between items-center border-b-2 border-gray-300'>
             <Link href={'/'} className='text-xl font-bold py-3 '>✨ Lo <span className='text-green-600 '>Go</span></Link>
 
             <nav className='space-x-4'>
-                <Link href={'/stories'}>Stories</Link>
-                <Link href={'/tutorials'}>Tutorials</Link>
-                <Link href={'/login'}>Login</Link>
-                <Link href={'/register'}>Register</Link>
-                <Link href={'/about'}>About</Link>
+                <NavLink href={'/about'}>About</NavLink>
+                <NavLink href={'/stories'}>Stories</NavLink>
+                <NavLink href={'/tutorials'}>Tutorials</NavLink>
+                <NavLink href={'/login'}>Login</NavLink>
+                <NavLink href={'/register'}>Register</NavLink>
             </nav>
         </div>
     );
